@@ -24,7 +24,7 @@
                   src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/e1009d7d-f9cf-4232-a8fe-dd31755b2c5d___b9fdc839e1d60ea36cf9be7d06107193.webp"
               />
             </router-link>
-            </v-col>
+          </v-col>
 
           <v-col cols="3">
             <v-img
@@ -132,7 +132,7 @@
                             text
                             color="error"
                         >
-                          S/{{productocat.getProductPrecio()}}
+                          <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
                         </v-btn>
 
                       </v-chip-group>
@@ -160,7 +160,7 @@
           </v-col>
         </v-row>
 
-</v-container>
+      </v-container>
     </v-container>
     <!--Fin Categorias Hogar Slide groups para mostrar productos por categoria-->
     <!--Categorias Salud y belleza Slide groups para mostrar productos por categoria-->
@@ -234,7 +234,7 @@
                             text
                             color="error"
                         >
-                          S/{{productocat.getProductPrecio()}}
+                          <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
                         </v-btn>
 
                       </v-chip-group>
@@ -320,7 +320,7 @@
                       text
                       color="error"
                   >
-                    S/{{productocat.getProductPrecio()}}
+                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
                   </v-btn>
 
                 </v-chip-group>
@@ -399,7 +399,7 @@
                       text
                       color="error"
                   >
-                    S/{{productocat.getProductPrecio()}}
+                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
                   </v-btn>
 
                 </v-chip-group>
@@ -479,7 +479,7 @@
                       text
                       color="error"
                   >
-                    S/{{productocat.getProductPrecio()}}
+                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
                   </v-btn>
 
                 </v-chip-group>
@@ -559,7 +559,7 @@
                       text
                       color="error"
                   >
-                    S/{{productocat.getProductPrecio()}}
+                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
                   </v-btn>
 
                 </v-chip-group>
@@ -759,7 +759,7 @@ export default defineComponent({
       responseproductsMod,
       responseproductsCos
 
-      }
+    }
 
     //...
 

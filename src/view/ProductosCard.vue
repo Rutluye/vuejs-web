@@ -2,210 +2,219 @@
   <div>
     <appBar/>
 
-  <v-container fluid style="background:#ffffff">
+    <v-container fluid style="background:#ffffff">
 
-    <v-container>
-      <v-row
-          v-for="(product,i)  in products.getProductArray()"
-          :key="i">
-        <v-col cols="6">
+      <v-container>
+        <v-row
+            v-for="(product,i)  in products.getProductArray()"
+            :key="i">
+          <v-col cols="6">
 
-          <v-carousel hide-delimiters>
-            <v-carousel-item
-                :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId1()"
-            ></v-carousel-item>
-            <v-carousel-item
-                :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId2()"
-            ></v-carousel-item>
-            <v-carousel-item
-                :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId3()"
-            ></v-carousel-item>
+            <v-carousel hide-delimiters>
+              <v-carousel-item
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId1()"
+              ></v-carousel-item>
+              <v-carousel-item
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId2()"
+              ></v-carousel-item>
+              <v-carousel-item
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId3()"
+              ></v-carousel-item>
 
-          </v-carousel>
+            </v-carousel>
 
-        </v-col>
+          </v-col>
 
-        <v-col cols="6">
-          <v-card-text>Miniso</v-card-text>
-          <v-spacer></v-spacer>
+          <v-col cols="6">
+            <v-card-text>Miniso</v-card-text>
+            <v-spacer></v-spacer>
 
-          <v-card-text>{{product.getProductNombre()}}</v-card-text>
-
-          <v-card-text>S/{{product.getProductPrecio()}}</v-card-text>
-
-          <v-divider></v-divider>
-
-          <v-btn
-              class="mx-2"
-              dark
-              small
-              color="red"
-          >
-            <v-icon dark>
-              mdi-minus
-            </v-icon>
-          </v-btn>
-
-          <v-btn
-              class="mx-2"
-              dark
-              small
-              color="red"
-          >
-            <v-icon dark>
-              mdi-plus
-            </v-icon>
-          </v-btn>
-
-          <v-btn
-              outlined
-              color="red"
-              dark
-          >
-            A MI BOLSA
-          </v-btn>
-
-          <v-btn
-              outlined
-              color="red"
-              dark
-          >
-            COMPRAR AHORA
-          </v-btn>
-
-
-          <v-card flat>
             <v-card-text>
-              <v-container
-                  fluid
-                  class="pa-0"
-              >
-                <v-row>
-                  <v-col cols="12">
-                  </v-col>
 
-                  <v-col
-                      cols="6"
-                      sm="3"
-                  >
-                    <v-btn
-                        icon
-                    >
-                      <v-icon>mdi-truck-fast-outline</v-icon>
-                    </v-btn>
+              {{product.getProductNombre()}}
 
-                  </v-col>
-
-                  <v-col
-                      cols="6"
-                      sm="3"
-                  >
-                    <v-btn
-                        icon
-                    >
-                      <v-icon>mdi-credit-card-multiple-outline</v-icon>
-                    </v-btn>
-                  </v-col>
-
-                  <v-col
-                      cols="6"
-                      sm="3"
-                  >
-                    <v-btn
-                        icon
-                    >
-                      <v-icon>mdi-lock-outline</v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-container>
             </v-card-text>
-          </v-card>
+
+            <v-card-text>
+              <v-card-subtitle
+                  color="#E53935"
+                  class="text-md-h6 text-sm-subtitle-1 font-weight-bold">
+                S/{{product.getProductPrecio()}}
+              </v-card-subtitle>
+            </v-card-text>
+
+            <v-divider></v-divider>
+
+            <v-btn
+                class="mx-2"
+                dark
+                small
+                color="red"
+            >
+              <v-icon dark>
+                mdi-minus
+              </v-icon>
+            </v-btn>
+
+            <v-btn
+                class="mx-2"
+                dark
+                small
+                color="red"
+            >
+              <v-icon dark>
+                mdi-plus
+              </v-icon>
+            </v-btn>
+
+            <v-btn
+                outlined
+                color="red"
+                dark
+            >
+              A MI BOLSA
+            </v-btn>
+
+            <v-btn
+                outlined
+                color="red"
+                dark
+            >
+              COMPRAR AHORA
+            </v-btn>
+
+            <v-card flat>
+              <v-card-text>
+                <v-container
+                    fluid
+                    class="pa-0"
+                >
+                  <v-row>
+                    <v-col cols="12">
+                    </v-col>
+
+                    <v-col
+                        cols="6"
+                        sm="3"
+                    >
+                      <v-btn
+                          icon
+                      >
+                        <v-icon>mdi-truck-fast-outline</v-icon>
+                      </v-btn>
+
+                    </v-col>
+
+                    <v-col
+                        cols="6"
+                        sm="3"
+                    >
+                      <v-btn
+                          icon
+                      >
+                        <v-icon>mdi-credit-card-multiple-outline</v-icon>
+                      </v-btn>
+                    </v-col>
+
+                    <v-col
+                        cols="6"
+                        sm="3"
+                    >
+                      <v-btn
+                          icon
+                      >
+                        <v-icon>mdi-lock-outline</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+            </v-card>
 
 
-          <v-card-text>Descripción del producto</v-card-text>
+            <v-card-text>Descripción del producto</v-card-text>
 
-          <v-card-text>{{product.getProductDescripcion()}}</v-card-text>
+            <v-card-text>{{product.getProductDescripcion()}}</v-card-text>
 
-        </v-col>
+          </v-col>
 
-      </v-row>
+        </v-row>
+
+      </v-container>
+    </v-container>
+
+    <v-container fluid style="background:rgb(255,255,255)">
+      <h1 class="text-center">Completa tu pedido:</h1>
+      <v-slide-group
+          v-model="modal"
+          center-active
+          show-arrows
+      >
+        <div
+            style="display:flex !important; gap: 15px !important;">
+
+          <v-slide-item
+              v-for="(productocat,i)  in responseproductsJug.getProductArray()"
+              :key="i"
+          >
+            <v-card
+                class="mx-auto my-12 mx-5"
+                width="285"
+            >
+              <div class="d-flex justify-space-between px-2 py-2">
+                <v-btn
+                    icon
+                    color="grey"
+                    left
+                    small
+                >
+                  <v-icon>mdi-heart-outline</v-icon>
+                </v-btn>
+              </div>
+              <v-img
+                  height="200"
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
+              ></v-img>
+
+              <v-card-text>
+                <v-spacer></v-spacer>
+                <div>{{productocat.getProductNombre()}}</div>
+              </v-card-text>
+              <v-card-text>
+                <v-chip-group
+                    active-class="deep-purple accent-4 white--text"
+                    column
+                >
+                  <v-btn
+                      text
+                      color="error"
+                  >
+                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
+                  </v-btn>
+
+                </v-chip-group>
+                <v-card-actions class="d-flex justify-space-around">
+                  <v-btn
+                      outlined
+                      color="red"
+                      dark
+                  >
+                    COMPRAR <br>AHORA
+                  </v-btn>
+                  <v-btn
+                      color="red"
+                      dark
+                  >
+                    AGREGAR <br>A LA BOLSA
+                  </v-btn>
+                </v-card-actions>
+              </v-card-text>
+            </v-card>
+          </v-slide-item>
+        </div>
+      </v-slide-group>
 
     </v-container>
-  </v-container>
-
-  <v-container fluid style="background:rgb(255,255,255)">
-    <h1 class="text-center">Completa tu pedido:</h1>
-    <v-slide-group
-        v-model="modal"
-        center-active
-        show-arrows
-    >
-      <div
-          style="display:flex !important; gap: 15px !important;">
-
-        <v-slide-item
-            v-for="(productocat,i)  in responseproductsJug.getProductArray()"
-            :key="i"
-        >
-          <v-card
-              class="mx-auto my-12 mx-5"
-              width="285"
-          >
-            <div class="d-flex justify-space-between px-2 py-2">
-              <v-btn
-                  icon
-                  color="grey"
-                  left
-                  small
-              >
-                <v-icon>mdi-heart-outline</v-icon>
-              </v-btn>
-            </div>
-            <v-img
-                height="200"
-                :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-            ></v-img>
-
-            <v-card-text>
-              <v-spacer></v-spacer>
-              <div>{{productocat.getProductNombre()}}</div>
-            </v-card-text>
-            <v-card-text>
-              <v-chip-group
-                  active-class="deep-purple accent-4 white--text"
-                  column
-              >
-                <v-btn
-                    text
-                    color="error"
-                >
-                  S/{{productocat.getProductPrecio()}}
-                </v-btn>
-
-              </v-chip-group>
-              <v-card-actions class="d-flex justify-space-around">
-                <v-btn
-                    outlined
-                    color="red"
-                    dark
-                >
-                  COMPRAR <br>AHORA
-                </v-btn>
-                <v-btn
-                    color="red"
-                    dark
-                >
-                  AGREGAR <br>A LA BOLSA
-                </v-btn>
-              </v-card-actions>
-            </v-card-text>
-          </v-card>
-        </v-slide-item>
-      </div>
-    </v-slide-group>
-
-  </v-container>
 
   </div>
 </template>
@@ -259,60 +268,6 @@ export default defineComponent({
       },
     ]
 
-    const productos = [
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/195904-384-384?v=637914622171200000&width=384&height=384&aspect=true',
-        titulo : 'Banda de puntos negros para nariz - We Bare Bears',
-        precio: 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/184078-384-384?v=637807701861500000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel bambú charcoal 6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      },
-      {
-        src : 'https://minisope.vtexassets.com/arquivos/ids/158472-384-384?v=637389919064870000&width=384&height=384&aspect=true',
-        titulo : 'Mascarilla para los ojos de gel orange  6 pares -  Miniso',
-        precio : 'S/ 8.95'
-      }
-    ]
 
     const products : Ref<DetailsModel|null> = ref(null);
 
@@ -339,7 +294,7 @@ export default defineComponent({
     }
 
 
-      onMounted( () => {
+    onMounted( () => {
       getProducts()
       getProductsByCategory();
     })
@@ -347,7 +302,6 @@ export default defineComponent({
 
     return {
       items,
-      productos,
       modal,
       products,
       responseproductsJug,

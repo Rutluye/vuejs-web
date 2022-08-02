@@ -5,24 +5,29 @@
         height="34"
         dense
     >
+
       <img alt="BannerGif"
            style="max-height: 40px; min-width: 100%;max-width: 100vw;"
            src="https://minisope.vtexassets.com/arquivos/CINTILLODESKTOPMinisoPeru.gif"
       />
     </v-app-bar>
     <div class="d-flex">
-      <v-img
-          max-width="120"
-          height="40"
-          alt="Logo"
-          class="mr-3 ml-2"
-          src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/10f39e67-475c-4ca1-b70d-514d1ff6f2ae___ef69a328b8f540713705bb41b96cb81a.png"
-      />
+      <router-link to="//">
+        <v-img
+            max-width="120"
+            height="40"
+            alt="Logo"
+            class="mr-3 ml-2"
+            src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/10f39e67-475c-4ca1-b70d-514d1ff6f2ae___ef69a328b8f540713705bb41b96cb81a.png"
+        />
+      </router-link>
       <v-text-field
           solo
           append-icon="mdi-card-search-outline"
           label="¿Qué estás buscando hoy?"
+
       />
+
       <v-spacer></v-spacer>
       <v-btn
           icon
@@ -45,8 +50,7 @@
     </div>
 
     <!--v-card cabecera-->
-    <v-card
-    >
+    <v-card>
       <v-menu
           offset-y
       >
@@ -55,15 +59,21 @@
               background-color="white"
               align-with-title
               class="hidden-sm-and-down"
+
           >
-            <v-tabs-slider color="red"></v-tabs-slider>
+            <v-tabs-slider
+                color="red"
+            ></v-tabs-slider>
             <v-tab
                 v-bind="attrs"
                 v-on="on"
                 color="black"
                 style="text-transform:capitalize !important; color: black">
-              Categorías
+
+              <router-link to="/categoria_producto/1">Categorías</router-link>
+
             </v-tab>
+
             <v-tab
                 v-for="(categoria,i) in categorias"
                 :key="i"
@@ -128,7 +138,7 @@ export default defineComponent({
     ]
     const colors = ['deep-purple accent-4']
 
-    const items = ['Hogar','Salud y Belleza', 'Juguetería', 'Tecnología']
+    const items = ['Hogar', 'Salud y Belleza', 'Juguetería', 'Tecnología']
 
     return {
       list,
