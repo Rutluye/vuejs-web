@@ -17,7 +17,6 @@
                 class="mx-auto my-12 mx-5"
                 width="285"
                 :to="'/detalle_producto/' + producto.producto_id"
-
             >
               <div class="d-flex justify-space-between px-2 py-2">
                 <v-btn

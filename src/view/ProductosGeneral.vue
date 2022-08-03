@@ -84,6 +84,7 @@
                   class="mx-auto my-12 mx-5"
                   width="285"
                   elevation="0"
+                  :to="'/detalle_producto/' + producto_categoria.getProductId()"
               >
                 <div class="d-flex justify-space-between px-2 py-2">
                   <v-spacer></v-spacer>

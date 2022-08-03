@@ -3,12 +3,14 @@
     <AppBar/>
     <!--Carrusel  imagenes-->
     <v-carousel hide-delimiters>
+      <router-link to="/categoria_producto/1">
       <v-carousel-item
 
           v-for="(item,i) in items"
           :key="i"
           :src="item.src"
       ></v-carousel-item>
+      </router-link>
     </v-carousel>
     <!--Fin de Carrusel imagenes-->
 
@@ -73,11 +75,13 @@
               cols="12"
               sm="4"
           >
+            <router-link to="/categoria_producto/1">
             <v-img
                 title="Hogar"
                 height="100%"
                 src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/c5ad1085-f9f8-4d55-a443-83d30fc98aca___f2c3a65571546c3ea08249fc35bb9d8e.jpg"
             />
+            </router-link>
           </v-col>
           <v-col
               md="8"
@@ -103,6 +107,8 @@
                   <v-card
                       class="mx-auto my-12 mx-5"
                       width="285"
+                      :to="'/detalle_producto/' + productocat.getProductId()"
+
                   >
                     <div class="d-flex justify-space-between px-2 py-2">
 
@@ -172,11 +178,13 @@
               cols="12"
               sm="4"
           >
+            <router-link to="/categoria_producto/2">
             <v-img
                 title="Salud y belleza"
                 height="100%"
                 src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/aeacbcdc-fec9-4830-a677-e4abd6f3094c___236b8e90f53d9b874b0be625316f72b8.jpg"
             />
+            </router-link>
           </v-col>
           <v-col
               md="8"
@@ -205,6 +213,7 @@
                   <v-card
                       class="mx-auto my-12 mx-5"
                       width="285"
+                      :to="'/detalle_producto/' + productocat.getProductId()"
                   >
                     <div class="d-flex justify-space-between px-2 py-2">
 
@@ -269,7 +278,6 @@
 
     <v-container fluid style="background:rgba(245,241,241,0.93)">
 
-
       <h1 class="text-center">Tecnología 💻</h1>
 
       <v-slide-group
@@ -290,7 +298,7 @@
             <v-card
                 class="mx-auto my-12 mx-5"
                 width="285"
-
+                :to="'/detalle_producto/' + productocat.getProductId()"
             >
               <div class="d-flex justify-space-between px-2 py-2">
                 <v-btn
@@ -370,6 +378,7 @@
             <v-card
                 class="mx-auto my-12 mx-5"
                 width="285"
+                :to="'/detalle_producto/' + productocat.getProductId()"
             >
               <div class="d-flex justify-space-between px-2 py-2">
                 <v-btn
@@ -450,6 +459,8 @@
             <v-card
                 class="mx-auto my-12 mx-5"
                 width="285"
+                :to="'/detalle_producto/' + productocat.getProductId()"
+
             >
               <div class="d-flex justify-space-between px-2 py-2">
                 <v-btn
@@ -530,6 +541,7 @@
             <v-card
                 class="mx-auto my-12 mx-5"
                 width="285"
+                :to="'/detalle_producto/' + productocat.getProductId()"
             >
               <div class="d-flex justify-space-between px-2 py-2">
                 <v-btn
