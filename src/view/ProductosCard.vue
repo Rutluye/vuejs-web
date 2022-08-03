@@ -5,11 +5,16 @@
     <v-container fluid style="background:#ffffff">
 
       <v-container>
+        <div v-if="products == null">
+          Cargando...
+        </div>
         <v-row
+            v-else
             v-for="(product,i)  in products.getProductArray()"
             :key="i">
-          <v-col cols="6">
-
+          <v-col
+              cols="6"
+          >
             <v-carousel hide-delimiters>
               <v-carousel-item
                   :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId1()"
@@ -25,7 +30,9 @@
 
           </v-col>
 
-          <v-col cols="6">
+          <v-col
+              cols="6"
+          >
             <v-card-text>Miniso</v-card-text>
             <v-spacer></v-spacer>
 
@@ -41,9 +48,9 @@
                   class="text-md-h6 text-sm-subtitle-1 font-weight-bold">
                 S/{{product.getProductPrecio()}}
               </v-card-subtitle>
-            </v-card-text>
+              <v-divider></v-divider>
 
-            <v-divider></v-divider>
+            </v-card-text>
 
             <v-btn
                 class="mx-2"
@@ -68,6 +75,7 @@
             </v-btn>
 
             <v-btn
+                class="mx-2"
                 outlined
                 color="red"
                 dark
@@ -76,6 +84,7 @@
             </v-btn>
 
             <v-btn
+                class="mx-2"
                 outlined
                 color="red"
                 dark
@@ -131,8 +140,7 @@
               </v-card-text>
             </v-card>
 
-
-            <v-card-text>Descripción del producto</v-card-text>
+            <v-card-subtitle>Descripción del producto</v-card-subtitle>
 
             <v-card-text>{{product.getProductDescripcion()}}</v-card-text>
 
@@ -152,8 +160,12 @@
       >
         <div
             style="display:flex !important; gap: 15px !important;">
-
+          <div
+            v-if="responseproductsJug == null">
+            Loading...
+          ></div>
           <v-slide-item
+              v-else
               v-for="(productocat,i)  in responseproductsJug.getProductArray()"
               :key="i"
           >
@@ -280,7 +292,6 @@ export default defineComponent({
 
       const response = await productsDetails.getProducts(route.params.producto_id)
       products.value = new DetailsModel(response)
-      console.log(response);
 
     }
 
