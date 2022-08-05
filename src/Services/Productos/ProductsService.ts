@@ -16,6 +16,10 @@ export class ProductsServices{
         return data;
     }
 
+    public async searchProducts(nompro : string){
+        const { data } = await axios.get(`${API_PREFIX_MAIN}/search/productos/${nompro}`)
+        return data;
+    }
 
 }
 

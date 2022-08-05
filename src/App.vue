@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <router-view name="toolbar" />
+    <AppBar/>
     <v-main>
       <router-view :key="$route.fullPath"/>
     </v-main>
@@ -11,11 +11,12 @@
 
 <script>
 import AppFooter from "@/components/AppFooter";
+import AppBar from "@/components/AppBar";
 import { defineComponent} from "@vue/composition-api";
 
 export default defineComponent({
   name: 'App',
-  components: {AppFooter},
+  components: {AppBar, AppFooter},
 
   data: () => ({
     //

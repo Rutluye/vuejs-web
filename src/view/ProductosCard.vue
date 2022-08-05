@@ -1,29 +1,28 @@
 <template>
   <div>
-    <appBar/>
-
     <v-container fluid style="background:#ffffff">
 
       <v-container>
         <div v-if="products == null">
-          Cargando...
+          <v-progress-circular
+              style="height:400px; display:flex; align-content: center; justify-content: center"
+              indeterminate
+              color="red"
+          ></v-progress-circular>
         </div>
-        <v-row
-            v-else
-            v-for="(product,i)  in products.getProductArray()"
-            :key="i">
+        <v-row v-else>
           <v-col
               cols="6"
           >
             <v-carousel hide-delimiters>
               <v-carousel-item
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId1()"
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +products.getProductId1()"
               ></v-carousel-item>
               <v-carousel-item
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId2()"
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +products.getProductId2()"
               ></v-carousel-item>
               <v-carousel-item
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +product.getProductId3()"
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +products.getProductId3()"
               ></v-carousel-item>
 
             </v-carousel>
@@ -38,7 +37,7 @@
 
             <v-card-text>
 
-              {{product.getProductNombre()}}
+              {{products.getProductNombre()}}
 
             </v-card-text>
 
@@ -46,7 +45,7 @@
               <v-card-subtitle
                   color="#E53935"
                   class="text-md-h6 text-sm-subtitle-1 font-weight-bold">
-                S/{{product.getProductPrecio()}}
+                S/{{products.getProductPrecio()}}
               </v-card-subtitle>
               <v-divider></v-divider>
 
@@ -142,7 +141,7 @@
 
             <v-card-subtitle>Descripción del producto</v-card-subtitle>
 
-            <v-card-text>{{product.getProductDescripcion()}}</v-card-text>
+            <v-card-text>{{products.getProductDescripcion()}}</v-card-text>
 
           </v-col>
 
@@ -161,12 +160,12 @@
         <div
             style="display:flex !important; gap: 15px !important;">
           <div
-            v-if="responseproductsJug == null">
+            v-if="responseproducts == null">
             Loading...
           ></div>
           <v-slide-item
               v-else
-              v-for="(productocat,i)  in responseproductsJug.getProductArray()"
+              v-for="(productocat,i)  in responseproducts.getProductArray()"
               :key="i"
           >
             <v-card
@@ -232,13 +231,10 @@
 </template>
 
 <script lang="ts">
-import appBar from "@/components/AppBar.vue";
 import {defineComponent} from "@vue/composition-api";
 import {onMounted, ref, Ref} from "@vue/composition-api/dist/vue-composition-api";
-import DetailsModel from "@/models/DetailsModel/DetailsModel";
-import IDetails from "@/interfaces/IDetails/IDetails";
+import DetailsItemModel from "@/models/DetailsModel/DetailsItemModel";
 import ProductModel from "@/models/Productos/ProductModel";
-import IProductos from "@/interfaces/Productos/IProductos";
 
 
 import {productsDetails} from "@/Services/DetailsProducts/DetailsProducts";
@@ -246,9 +242,6 @@ import {productsServices} from "@/Services/Productos/ProductsService";
 
 export default defineComponent({
   name: 'home',
-  components:{
-    appBar
-  },
   data: () =>({
     icons: [
       'mdi-vuetify',
@@ -280,34 +273,22 @@ export default defineComponent({
       },
     ]
 
+    const products : Ref<DetailsItemModel|null> = ref(null);
 
-    const products : Ref<DetailsModel|null> = ref(null);
-
-
-    const producto_categoria:Ref<IProductos[]|any> = ref(null);
-    const responseproductsJug : Ref<ProductModel|null> = ref(null);
-
+    const responseproducts : Ref<ProductModel|null> = ref(null);
 
     const  getProducts = async () => {
 
       const response = await productsDetails.getProducts(route.params.producto_id)
-      products.value = new DetailsModel(response)
+      products.value = new DetailsItemModel(response)
+
+      const response1 = await productsServices.getProductsByCategory(products.value.getCategoria());
+      responseproducts.value = new ProductModel(response1['productos'])
 
     }
-
-
-    const getProductsByCategory = async () =>{
-
-      const response3 = await productsServices.getProductsByCategory(4);
-      producto_categoria.value = response3;
-      responseproductsJug.value = new ProductModel(producto_categoria.value)
-
-    }
-
 
     onMounted( () => {
       getProducts()
-      getProductsByCategory();
     })
 
 
@@ -315,8 +296,7 @@ export default defineComponent({
       items,
       modal,
       products,
-      responseproductsJug,
-      getProductsByCategory,
+      responseproducts,
       getProducts
 
     }

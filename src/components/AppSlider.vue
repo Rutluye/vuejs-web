@@ -16,7 +16,7 @@
             <v-card
                 class="mx-auto my-12 mx-5"
                 width="285"
-                :to="'/detalle_producto/' + producto.producto_id"
+                :to="'/detalle_producto/' + producto.getProductId()"
             >
               <div class="d-flex justify-space-between px-2 py-2">
                 <v-btn
@@ -24,7 +24,7 @@
                     depressed
                     small
                 >
-                  {{producto.producto_descuento}}%
+                  {{producto.getProductDescuento()}}%
                 </v-btn>
                 <v-btn
                     icon
@@ -36,11 +36,11 @@
               </div>
               <v-img
                   height="200"
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +producto.producto_img"
+                  :src="'data:image/jpeg;charset=utf-8;base64,' +producto.getProductImage()"
               />
               <v-card-text>
                 <v-spacer></v-spacer>
-                <div>{{producto.producto_nombre}}</div>
+                <div>{{producto.getProductNombre()}}</div>
               </v-card-text>
               <v-card-text>
                 <v-chip-group
@@ -51,7 +51,7 @@
                       text
                       color="error"
                   >
-                   <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{ producto.precio_final }}</v-card-subtitle>
+                   <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{ producto.getPrecioFinal() }}</v-card-subtitle>
                   </v-btn>
 
                   <v-btn
@@ -59,7 +59,7 @@
                       disabled
                       class="text-decoration-line-through"
                   >
-                   S/{{producto.producto_precio}}
+                   S/{{producto.getProductPrecio()}}
                   </v-btn>
 
                 </v-chip-group>
@@ -97,11 +97,12 @@ import {defineComponent} from "@vue/composition-api";
 export default defineComponent({
   name: "AppSlider.vue",
   props:{
-    productos:{
-      Type : Object
-    }
+    productos:
+        {
+        //@ts-ignore
+      type: Array /**as PropType<ProductModel>**/
+        }
   },
-
   setup (){
     const modal = null
     return {

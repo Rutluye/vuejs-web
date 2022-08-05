@@ -3,7 +3,7 @@ import IProductos from "@/interfaces/Productos/IProductos";
 export default class ProductsItemModel {
 
     private producto_descripcion: string;
-    private producto_id: number;
+    private int: number;
     private producto_img: string;
     private producto_nombre: string;
     private producto_precio: number;
@@ -14,7 +14,7 @@ export default class ProductsItemModel {
 
     constructor(data: IProductos) {
         this.producto_descripcion = data.producto_descripcion
-        this.producto_id = data.producto_id
+        this.int = data.int
         this.producto_img = data.producto_img
         this.producto_nombre = data.producto_nombre
         this.producto_precio = data.producto_precio
@@ -29,9 +29,8 @@ export default class ProductsItemModel {
         return this.producto_descripcion
     }
 
-
     public getProductId() : number {
-        return this.producto_id
+        return this.int
     }
 
     public getProductImage() : string {
@@ -44,6 +43,14 @@ export default class ProductsItemModel {
 
     public getProductPrecio() : number {
         return this.producto_precio
+    }
+
+    public getProductDescuento() : number {
+        return this.producto_descuento
+    }
+
+    public getPrecioFinal() : number {
+        return this.precio_final
     }
 
     public getCategoria() : number {

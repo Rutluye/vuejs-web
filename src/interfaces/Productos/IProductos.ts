@@ -1,6 +1,6 @@
 export default interface IProductos{
     producto_descripcion : string;
-    producto_id          : number;
+    int                  : number;
     producto_img         : string;
     producto_nombre      : string;
     producto_precio      : number;

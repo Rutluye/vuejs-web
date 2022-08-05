@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div>
     <v-app-bar
         color="red darken-2 mb-4"
@@ -12,7 +12,7 @@
       />
     </v-app-bar>
     <div class="d-flex">
-      <router-link to="//">
+      <router-link to="/">
         <v-img
             max-width="120"
             height="40"
@@ -21,12 +21,22 @@
             src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/10f39e67-475c-4ca1-b70d-514d1ff6f2ae___ef69a328b8f540713705bb41b96cb81a.png"
         />
       </router-link>
+      <v-autocomplete
+          solo
+          v-model="inputModel"
+          :items="searchProduct"
+          :search-input.sync="selectAuto"
+          cache-items
+          hide-no-data
+          hide-details
+      >
       <v-text-field
           solo
           append-icon="mdi-card-search-outline"
           label="¿Qué estás buscando hoy?"
 
       />
+      </v-autocomplete>
 
       <v-spacer></v-spacer>
       <v-btn
@@ -96,12 +106,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "@vue/composition-api";
+import {defineComponent, ref, Ref, watch} from "@vue/composition-api";
+import CategoryModel from "@/models/CategoryModel/CategoryModel";
+import {productsServices} from "@/Services/Productos/ProductsService";
+import ProductModel from "@/models/Productos/ProductModel";
+
 
 export default defineComponent({
   name: "AppBar.vue",
+  loading: false,
+  select: null,
+  items: [],
+  search: null,
 
-  setup() {
+
+  setup(_,context) {
 
     const list: boolean = false;
 
@@ -132,26 +151,61 @@ export default defineComponent({
       }
     ]
 
-    const btns = [
-      ['Removed', '0'],
+    const btns =    ['Removed', '0']
 
-    ]
     const colors = ['deep-purple accent-4']
 
     const items = ['Hogar', 'Salud y Belleza', 'Juguetería', 'Tecnología']
 
-    return {
-      list,
-      categorias, colors, btns, items,
-      model: 'tab-2',
-      text: 'Hogar',
+    const route = context.root.$route;
 
+    const responseproductsCat : Ref<ProductModel|null> = ref(null);
+
+    const responseCategory : Ref<CategoryModel|null> = ref(null);
+
+    const searchProduct : Ref<ProductModel|any> = ref([]);
+    const selectAuto : Ref<any> = ref('')
+    const inputModel : Ref<any> =ref(null)
+
+    watch(selectAuto, async() =>{
+      const response = await productsServices.searchProducts(selectAuto.value)
+
+      searchProduct.value = response.map( (producto : any) =>{ return producto.producto_nombre})
+    })
+
+
+    const getProductsByCategory = async () => {
+
+      const response = await productsServices.getProductsByCategory(route.params.categoria);
+
+      responseCategory.value = new CategoryModel(response[0])
     }
 
-  }
+
+      return {
+        list,
+        getProductsByCategory,
+        responseproductsCat,
+        responseCategory,
+        searchProduct,
+        selectAuto,
+        inputModel,
+        categorias, colors, btns,items,
+        model: 'tab-2',
+        text: 'Hogar',
+
+      }
+    }
 })
 </script>
-
 <style scoped>
+.button_offer{
+  padding:0 !important;
+  margin:0 !important;
+}
+.v-slide-group__content{
+  display:flex !important;
+  gap: 15px !important;
+}
 
 </style>

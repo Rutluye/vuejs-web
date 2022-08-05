@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AppBar/>
     <!--Carrusel  imagenes-->
     <v-carousel hide-delimiters>
       <router-link to="/categoria_producto/1">
@@ -169,6 +168,7 @@
       </v-container>
     </v-container>
     <!--Fin Categorias Hogar Slide groups para mostrar productos por categoria-->
+
     <!--Categorias Salud y belleza Slide groups para mostrar productos por categoria-->
 
     <v-container fluid style="background:#ffffff">
@@ -644,6 +644,7 @@
           </v-col>
 
           <v-divider
+              inset
               color="black"
               vertical
           ></v-divider>
@@ -674,17 +675,14 @@
 <!--Script -->
 
 <script lang="ts">
-import AppBar from "../components/AppBar.vue";
 import AppSlider from "../components/AppSlider.vue";
 import {defineComponent, onMounted, Ref, ref} from "@vue/composition-api";
 import {productsServices} from '@/Services/Productos/ProductsService'
 import ProductModel from "@/models/Productos/ProductModel";
-import IProductos from "@/interfaces/Productos/IProductos";
 
 export default defineComponent({
   name: 'home',
   components:{
-    AppBar,
     AppSlider
   },
 
@@ -708,7 +706,6 @@ export default defineComponent({
 
     const products : Ref<ProductModel|null> = ref(null);
 
-    const producto_categoria:Ref<IProductos[]|any> = ref(null);
     const responseproductsCat : Ref<ProductModel|null> = ref(null);
     const responseproductsSal : Ref<ProductModel|null> = ref(null);
     const responseproductsTeg : Ref<ProductModel|null> = ref(null);
@@ -720,35 +717,32 @@ export default defineComponent({
     const  getProducts = async () => {
 
       const response = await productsServices.getProducts()
+      //Instanciar la clase
       products.value = new ProductModel(response)
+      console.log(products.value);
+
 
 
     }
     const getProductsByCategory = async () =>{
 
       const response = await productsServices.getProductsByCategory(1);
-      producto_categoria.value = response;
-      responseproductsCat.value = new ProductModel(producto_categoria.value)
+      responseproductsCat.value = new ProductModel(response['productos'])
 
       const response1 = await productsServices.getProductsByCategory(2);
-      producto_categoria.value = response1;
-      responseproductsSal.value = new ProductModel(producto_categoria.value)
+      responseproductsSal.value = new ProductModel(response1['productos'])
 
       const response2 = await productsServices.getProductsByCategory(8);
-      producto_categoria.value = response2;
-      responseproductsTeg.value = new ProductModel(producto_categoria.value)
+      responseproductsTeg.value = new ProductModel(response2['productos'])
 
       const response3 = await productsServices.getProductsByCategory(4);
-      producto_categoria.value = response3;
-      responseproductsJug.value = new ProductModel(producto_categoria.value)
+      responseproductsJug.value = new ProductModel(response3['productos'])
 
       const response4 = await productsServices.getProductsByCategory(3);
-      producto_categoria.value = response4;
-      responseproductsMod.value = new ProductModel(producto_categoria.value)
+      responseproductsMod.value = new ProductModel(response4['productos'])
 
       const response5 = await productsServices.getProductsByCategory(6);
-      producto_categoria.value = response5;
-      responseproductsCos.value = new ProductModel(producto_categoria.value)
+      responseproductsCos.value = new ProductModel(response5['productos'])
 
     }
 

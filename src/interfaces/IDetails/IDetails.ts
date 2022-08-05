@@ -1,3 +1,5 @@
+import IProductImagenes from "@/interfaces/IDetails/IProductImagenes";
+
 export default interface IDetails{
     producto_descripcion : string;
     producto_id          : number;
