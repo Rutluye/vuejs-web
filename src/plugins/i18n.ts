@@ -4,16 +4,18 @@ import LocaleMessageObject = VueI18n.LocaleMessageObject;
 
 import languageEn from "@/labels/languageEN";
 import languageEs from "@/labels/languageES";
+import languageFR from "@/labels/languageFR";
 
 Vue.use(VueI18n);
 
 const messages:{ [key: string]: LocaleMessageObject } = {
     en: languageEn,
-    es: languageEs
+    es: languageEs,
+    fr: languageFR
 }
 
 export default new VueI18n({
-    locale: 'es',
+    locale: 'en',
     messages: messages,
     fallbackLocale: 'es'
 });

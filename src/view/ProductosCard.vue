@@ -79,7 +79,7 @@
                 color="red"
                 dark
             >
-              A MI BOLSA
+              {{$t('a mi bolsa')}}
             </v-btn>
 
             <v-btn
@@ -88,7 +88,7 @@
                 color="red"
                 dark
             >
-              COMPRAR AHORA
+              {{$t('comprar ahora')}}
             </v-btn>
 
             <v-card flat>
@@ -139,7 +139,7 @@
               </v-card-text>
             </v-card>
 
-            <v-card-subtitle>Descripción del producto</v-card-subtitle>
+            <v-card-subtitle>{{$t('descripcion')}}</v-card-subtitle>
 
             <v-card-text>{{products.getProductDescripcion()}}</v-card-text>
 
@@ -151,7 +151,7 @@
     </v-container>
 
     <v-container fluid style="background:rgb(255,255,255)">
-      <h1 class="text-center">Completa tu pedido:</h1>
+      <h1 class="text-center">{{$t('completa')}}</h1>
       <v-slide-group
           v-model="modal"
           center-active
@@ -210,13 +210,13 @@
                       color="red"
                       dark
                   >
-                    COMPRAR <br>AHORA
+                    {{$t('comprar')}}<br>{{$t('ahora')}}
                   </v-btn>
                   <v-btn
                       color="red"
                       dark
                   >
-                    AGREGAR <br>A LA BOLSA
+                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                   </v-btn>
                 </v-card-actions>
               </v-card-text>

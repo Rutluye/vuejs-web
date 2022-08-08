@@ -16,7 +16,7 @@
     <!--Cuerpo de imagenes cards-->
     <v-container fluid style="background:#e9c2f8">
       <v-container>
-        <h1 class="text-center">No sabía lo que necesitaba</h1>
+        <h1 class="text-center">{{ $t('no_sabia') }}</h1>
         <v-row>
           <v-col cols="3">
             <router-link to="https://www.miniso.pe/Papeleria" >
@@ -67,7 +67,7 @@
           src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/fe9feabb-5908-4ece-8563-be66cbaed09b___8052c97bb019b80eeae085dfc3771780.webp"
           alt="¿Cómo comprar en Miniso Online?"
       />
-      <h1 class="text-center">No sabía lo que necesitaba</h1>
+      <h1 class="text-center">{{ $t('no_sabia') }}</h1>
       <v-container>
         <v-row>
           <v-col
@@ -87,7 +87,7 @@
               sm="8"
               cols="12"
           >
-            <h1 class="text-center">Hogar ✨</h1>
+            <h1 class="text-center">{{ $t('hogar') }} ✨</h1>
             <v-slide-group
                 v-model="modal"
                 center-active
@@ -147,13 +147,13 @@
                             color="red"
                             dark
                         >
-                          COMPRAR <br>AHORA
+                          {{$t('comprar')}}<br>{{$t('ahora')}}
                         </v-btn>
                         <v-btn
                             color="red"
                             dark
                         >
-                          AGREGAR <br>A LA BOLSA
+                          {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                         </v-btn>
                       </v-card-actions>
                     </v-card-text>
@@ -191,7 +191,7 @@
               sm="8"
               cols="12"
           >
-            <h1 class="text-center">Salud y Belleza ✨</h1>
+            <h1 class="text-center">{{ $t('salud') }}✨</h1>
             <v-slide-group
                 v-model="modal"
                 center-active
@@ -253,13 +253,13 @@
                             color="red"
                             dark
                         >
-                          COMPRAR <br>AHORA
+                          {{$t('comprar')}}<br>{{$t('ahora')}}
                         </v-btn>
                         <v-btn
                             color="red"
                             dark
                         >
-                          AGREGAR <br>A LA BOLSA
+                          {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                         </v-btn>
                       </v-card-actions>
                     </v-card-text>
@@ -278,7 +278,7 @@
 
     <v-container fluid style="background:rgba(245,241,241,0.93)">
 
-      <h1 class="text-center">Tecnología 💻</h1>
+      <h1 class="text-center">{{ $t('tecno') }} 💻</h1>
 
       <v-slide-group
           v-model="modal"
@@ -338,13 +338,13 @@
                       color="red"
                       dark
                   >
-                    COMPRAR <br>AHORA
+                    {{$t('comprar')}}<br>{{$t('ahora')}}
                   </v-btn>
                   <v-btn
                       color="red"
                       dark
                   >
-                    AGREGAR <br>A LA BOLSA
+                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                   </v-btn>
                 </v-card-actions>
               </v-card-text>
@@ -358,7 +358,7 @@
     <!--Catergoria Juguetes Slide groups para mostrar productos -->
 
     <v-container fluid style="background:rgba(245,241,241,0.93)">
-      <h1 class="text-center">Juguetes ✨</h1>
+      <h1 class="text-center">{{ $t('juguetes')}} ✨</h1>
       <v-slide-group
           v-model="modal"
           center-active
@@ -418,13 +418,13 @@
                       color="red"
                       dark
                   >
-                    COMPRAR <br>AHORA
+                    {{$t('comprar')}}<br>{{$t('ahora')}}
                   </v-btn>
                   <v-btn
                       color="red"
                       dark
                   >
-                    AGREGAR <br>A LA BOLSA
+                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                   </v-btn>
                 </v-card-actions>
               </v-card-text>
@@ -439,7 +439,7 @@
     <!--Catergoria Moda Slide groups para mostrar productos -->
 
     <v-container fluid style="background:rgba(245,241,241,0.93)">
-      <h1 class="text-center">Los mejores accesorios de Moda ✨</h1>
+      <h1 class="text-center">{{ $t('los_mejo')}}✨</h1>
       <v-slide-group
           v-model="modal"
           center-active
@@ -500,13 +500,13 @@
                       color="red"
                       dark
                   >
-                    COMPRAR <br>AHORA
+                    {{$t('comprar')}}<br>{{$t('ahora')}}
                   </v-btn>
                   <v-btn
                       color="red"
                       dark
                   >
-                    AGREGAR <br>A LA BOLSA
+                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                   </v-btn>
                 </v-card-actions>
               </v-card-text>
@@ -521,7 +521,7 @@
     <!--Catergoria Cosmeticos Slide groups para mostrar productos -->
 
     <v-container fluid style="background:rgba(245,241,241,0.93)">
-      <h1 class="text-center">Cosméticos</h1>
+      <h1 class="text-center">{{ $t('cosmeticos')}}</h1>
       <v-slide-group
           v-model="modal"
           center-active
@@ -581,13 +581,13 @@
                       color="red"
                       dark
                   >
-                    COMPRAR <br>AHORA
+                    {{$t('comprar')}}<br>{{$t('ahora')}}
                   </v-btn>
                   <v-btn
                       color="red"
                       dark
                   >
-                    AGREGAR <br>A LA BOLSA
+                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                   </v-btn>
                 </v-card-actions>
               </v-card-text>
@@ -616,7 +616,7 @@
                 justify="space-around"
             >
               <v-btn text>
-                VENTAS CORPORATIVAS
+                {{$t('ventas')}}
               </v-btn>
 
             </v-row>
@@ -636,7 +636,7 @@
                 justify="space-around"
             >
               <v-btn text>
-                PREGUNTAS FRECUENTES
+                {{$t('preguntas')}}
               </v-btn>
 
             </v-row>
@@ -657,7 +657,7 @@
                 justify="space-around"
             >
               <v-btn text>
-                LIBRO DE RECLAMACIONES
+                {{$t('libro')}}
               </v-btn>
             </v-row>
 

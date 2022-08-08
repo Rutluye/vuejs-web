@@ -39,6 +39,22 @@
       </v-autocomplete>
 
       <v-spacer></v-spacer>
+      <v-select
+        dense
+        outlined
+        width="100px"
+        item-text="id"
+        v-model="e1"
+        :items="idiomas"
+        @change="selectLanguage($event)"
+      >
+        <template v-slot:selection="{item}">
+          <v-img :src="item.icon" style="max-width:22px;max-height:15px"/>
+        </template>
+        <template v-slot="{item}">
+          {{item.label}}
+        </template>
+      </v-select>
       <v-btn
           icon
           color="black"
@@ -110,6 +126,7 @@ import {defineComponent, ref, Ref, watch} from "@vue/composition-api";
 import CategoryModel from "@/models/CategoryModel/CategoryModel";
 import {productsServices} from "@/Services/Productos/ProductsService";
 import ProductModel from "@/models/Productos/ProductModel";
+import i18n from "@/plugins/i18n";
 
 
 export default defineComponent({
@@ -181,9 +198,24 @@ export default defineComponent({
       responseCategory.value = new CategoryModel(response[0])
     }
 
+    const e1 = 'es';
+
+    function selectLanguage(id:string) {
+      i18n.locale = id;
+
+    }
+    const idiomas = [
+      {id : 'es', label : 'Español', icon : 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/2880px-Bandera_de_Espa%C3%B1a.svg.png'},
+      {id : 'en', label : 'Ingles', icon  : 'https://assets.puzzlefactory.pl/puzzle/423/164/original.webp'},
+      {id : 'fr', label : 'Frances', icon : 'https://static.magflags.net/media/catalog/product/cache/b756e98438727cbd4415a0b646d85461/F/R/FR-1x1.5.png'}
+
+    ]
+
 
       return {
+        e1,
         list,
+        idiomas,
         getProductsByCategory,
         responseproductsCat,
         responseCategory,
@@ -193,7 +225,7 @@ export default defineComponent({
         categorias, colors, btns,items,
         model: 'tab-2',
         text: 'Hogar',
-
+        selectLanguage
       }
     }
 })

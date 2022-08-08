@@ -131,7 +131,7 @@
                       color="red"
                       dark
                   >
-                    AGREGAR A LA BOLSA
+                    {{ $t('add to bag')}}
                   </v-btn>
 
                 </v-card-actions>

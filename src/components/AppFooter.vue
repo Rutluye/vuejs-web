@@ -9,10 +9,10 @@
           <v-row
               class="justify-start"
           >
-            <h1>¡Que no se te pase ni una!</h1>
-            <p>Deja tu correo y entérate de todo lo que pasa en Miniso antes que nadie. Tips, noticias, tendencias, promociones y más.</p>
+            <h1>{{ $t('que_no_foo') }}</h1>
+            <p>{{ $t('deja_tu_foo') }}</p>
 
-            <p>Al momento de enviar mi correo acepto los Términos y condiciones y el Aviso de privacidad</p>
+            <p>{{ $t('final_foo') }}</p>
 
           </v-row>
         </v-col>

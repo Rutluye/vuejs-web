@@ -69,13 +69,13 @@
                       color="red"
                       dark
                   >
-                    COMPRAR <br>AHORA
+                    {{$t('comprar')}}<br>{{$t('ahora')}}
                   </v-btn>
                   <v-btn
                       color="red"
                       dark
                   >
-                    AGREGAR <br>A LA BOLSA
+                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
                   </v-btn>
                 </v-card-actions>
               </v-card-text>
