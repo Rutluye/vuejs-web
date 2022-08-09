@@ -1,7 +1,6 @@
 <template>
-  <v-container fluid style="background:rgba(245,241,241,0.93)">
     <v-container>
-      <h1 class="text-center">Miniso Wow ✨</h1>
+      <h1 class="text-center">{{title}}</h1>
       <v-slide-group
           v-model="modal"
           center-active
@@ -23,6 +22,7 @@
                     color="error button_offer"
                     depressed
                     small
+                    v-if="producto.getProductDescuento() != 0"
                 >
                   {{producto.getProductDescuento()}}%
                 </v-btn>
@@ -58,6 +58,7 @@
                       text
                       disabled
                       class="text-decoration-line-through"
+                      v-if="producto.getProductPrecio() != producto.getPrecioFinal() "
                   >
                    S/{{producto.getProductPrecio()}}
                   </v-btn>
@@ -86,7 +87,6 @@
       </v-slide-group>
 
     </v-container>
-  </v-container>
 
 </template>
 
@@ -101,7 +101,10 @@ export default defineComponent({
         {
         //@ts-ignore
       type: Array /**as PropType<ProductModel>**/
-        }
+        },
+    title:{
+      type : String
+    }
   },
   setup (){
     const modal = null

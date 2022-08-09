@@ -15,6 +15,11 @@ export class ProductsServices{
         const { data } = await axios.get(`${API_PREFIX_MAIN}/productos_categoria/${id_categoria}`)
         return data;
     }
+    public async getAllProductsByCategory() {
+
+        const { data } = await axios.get(`${API_PREFIX_MAIN}/productos_categorias/`)
+        return data;
+    }
 
     public async searchProducts(nompro : string){
         const { data } = await axios.get(`${API_PREFIX_MAIN}/search/productos/${nompro}`)

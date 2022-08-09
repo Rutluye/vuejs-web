@@ -30,23 +30,25 @@
           hide-no-data
           hide-details
       >
-      <v-text-field
-          solo
-          append-icon="mdi-card-search-outline"
-          label="¿Qué estás buscando hoy?"
+        <v-text-field
+            solo
+            append-icon="mdi-card-search-outline"
+            label="¿Qué estás buscando hoy?"
 
-      />
+        />
       </v-autocomplete>
 
       <v-spacer></v-spacer>
+
       <v-select
-        dense
-        outlined
-        width="100px"
-        item-text="id"
-        v-model="e1"
-        :items="idiomas"
-        @change="selectLanguage($event)"
+          style="max-width:80px"
+          dense
+          outlined
+          width="100px"
+          item-text="id"
+          v-model="e1"
+          :items="idiomas"
+          @change="selectLanguage($event)"
       >
         <template v-slot:selection="{item}">
           <v-img :src="item.icon" style="max-width:22px;max-height:15px"/>
@@ -117,8 +119,9 @@
         </v-list>
       </v-menu>
     </v-card>
-
   </div>
+
+
 </template>
 
 <script lang="ts">

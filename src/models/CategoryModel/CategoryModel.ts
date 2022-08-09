@@ -5,9 +5,9 @@ import ProductModel from "@/models/Productos/ProductModel";
 
 export default class CategoryModel extends ProductModel {
 
-    private categoria_descripcion   : string;
-    private categoria_image         : string;
-    private categoria_nombre        : string;
+    readonly categoria_descripcion   : string;
+    readonly categoria_image         : string;
+    readonly categoria_nombre        : string;
 
     constructor(data : ICategory ) {
         super(data.productos)

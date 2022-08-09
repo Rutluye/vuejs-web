@@ -1,6 +1,8 @@
 <template>
   <div>
-    <!--Carrusel  imagenes-->
+    <!---------------------------------------------------------------------------->
+    <!----------------------------------CAROUSEL---------------------------------->
+    <!---------------------------------------------------------------------------->
     <v-carousel hide-delimiters>
       <router-link to="/categoria_producto/1">
       <v-carousel-item
@@ -11,9 +13,10 @@
       ></v-carousel-item>
       </router-link>
     </v-carousel>
-    <!--Fin de Carrusel imagenes-->
 
-    <!--Cuerpo de imagenes cards-->
+    <!---------------------------------------------------------------------------->
+    <!------------------------------BODY CARD IMAGES------------------------------>
+    <!---------------------------------------------------------------------------->
     <v-container fluid style="background:#e9c2f8">
       <v-container>
         <h1 class="text-center">{{ $t('no_sabia') }}</h1>
@@ -26,7 +29,6 @@
               />
             </router-link>
           </v-col>
-
           <v-col cols="3">
             <v-img
                 title="Cosméticos"
@@ -46,560 +48,153 @@
         </v-row>
       </v-container>
     </v-container>
-    <!--Cuerpo de imagenes cards-->
 
-    <!--Slide groups para mostrar productos pagina principal-->
-    <div v-if="products == null">
-      <v-progress-circular
-          indeterminate
-          color="red"
-      ></v-progress-circular>
-    </div>
+    <!-------------------------------------------------------------------------->
+    <!--------------------------SLIDE GROUP MINISO WOW-------------------------->
+    <!-------------------------------------------------------------------------->
+    <v-container fluid style="background:rgba(245,241,241,0.93)">
+      <div v-if="products == null">
+        <v-progress-circular
+            indeterminate
+            color="red"
+        ></v-progress-circular>
+      </div>
+      <div v-else>
+        <AppSlider
+            title="Miniso Wow✨"
+            :productos="products.getProductArray()"/>
+      </div>
+    </v-container>
+
+
+    <!--------------------------------------------------------------------------->
+    <!-------------------------------HOME CATEGORY------------------------------->
+    <!--------------------------------------------------------------------------->
+    <div v-if="category == null ">Loading...</div>
     <div v-else>
-      <AppSlider :productos="products.getProductArray()"/>
+      <div>
+        <v-container fluid style="background:#ffffff">
+          <v-img
+              src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/fe9feabb-5908-4ece-8563-be66cbaed09b___8052c97bb019b80eeae085dfc3771780.webp"
+              alt="¿Cómo comprar en Miniso Online?"
+          />
+          <h1 class="text-center">{{ $t('no_sabia') }}</h1>
+
+          <v-container>
+            <v-row>
+              <v-col
+                  cols="12"
+                  sm="4"
+              >
+                <router-link to="/categoria_producto/1">
+                  <v-img
+                      title="Hogar"
+                      height="100%"
+                      src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/c5ad1085-f9f8-4d55-a443-83d30fc98aca___f2c3a65571546c3ea08249fc35bb9d8e.jpg"
+                  />
+                </router-link>
+              </v-col>
+              <v-col
+                  md="8"
+                  sm="8"
+                  cols="12"
+              >
+                  <AppSlider
+                      :title="$t('hogar')"
+                      :productos="category.getCategoryArray()[0].getProductArray()"/>
+
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-container>
+
+        <!--------------------------------------------------------------------------->
+        <!------------------------------Health & Beauty------------------------------>
+        <!--------------------------------------------------------------------------->
+        <v-container fluid style="background:#ffffff">
+          <v-container>
+            <v-row>
+              <v-col
+                  cols="12"
+                  sm="4"
+              >
+                <router-link to="/categoria_producto/2">
+                  <v-img
+                      title="Salud y belleza"
+                      height="100%"
+                      src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/aeacbcdc-fec9-4830-a677-e4abd6f3094c___236b8e90f53d9b874b0be625316f72b8.jpg"
+                  />
+                </router-link>
+              </v-col>
+              <v-col
+                  md="8"
+                  sm="8"
+                  cols="12"
+              >
+                <div>
+                  <AppSlider
+                      :title="$t('salud')"
+                      :productos="category.getCategoryArray()[1].getProductArray()"/>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-container>
+
+        <!--------------------------------------------------------------------------->
+        <!------------------------------Technology----------------------------------->
+        <!--------------------------------------------------------------------------->
+        <v-container fluid style="background:rgba(245,241,241,0.93)">
+
+          <h1 class="text-center">{{$t('tecno')}}</h1>
+
+          <div>
+            <AppSlider
+                :productos="category.getCategoryArray()[7].getProductArray()"/>
+          </div>
+        </v-container>
+
+        <!--------------------------------------------------------------------------->
+        <!------------------------------Toys----------------------------------------->
+        <!--------------------------------------------------------------------------->
+        <v-container fluid style="background:rgba(245,241,241,0.93)">
+          <h1 class="text-center">{{ $t('juguetes')}}</h1>
+
+          <div>
+            <AppSlider
+                :productos="category.getCategoryArray()[3].getProductArray()"/>
+          </div>
+
+        </v-container>
+        <!--------------------------------------------------------------------------->
+        <!------------------------------Moda----------------------------------------->
+        <!--------------------------------------------------------------------------->
+
+        <v-container fluid style="background:rgba(245,241,241,0.93)">
+          <h1 class="text-center">{{ $t('los_mejo')}}</h1>
+          <div>
+            <AppSlider
+                :productos="category.getCategoryArray()[2].getProductArray()"/>
+          </div>
+
+        </v-container>
+        <!--------------------------------------------------------------------------->
+        <!-----------------------------Cosmetics------------------------------------->
+        <!--------------------------------------------------------------------------->
+
+        <v-container fluid style="background:rgba(245,241,241,0.93)">
+          <h1 class="text-center">{{ $t('cosmeticos')}}</h1>
+          <div>
+            <AppSlider
+                :productos="category.getCategoryArray()[5].getProductArray()"/>
+          </div>
+        </v-container>
+      </div>
+
     </div>
-    <!--Slide groups para mostrar productos pagina principal-->
 
-    <!--Categorias Hogar Slide groups para mostrar productos por categoria-->
-    <v-container fluid style="background:#ffffff">
-      <v-img
-          title="¿Cómo comprar en Miniso Online?"
-          src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/fe9feabb-5908-4ece-8563-be66cbaed09b___8052c97bb019b80eeae085dfc3771780.webp"
-          alt="¿Cómo comprar en Miniso Online?"
-      />
-      <h1 class="text-center">{{ $t('no_sabia') }}</h1>
-      <v-container>
-        <v-row>
-          <v-col
-              cols="12"
-              sm="4"
-          >
-            <router-link to="/categoria_producto/1">
-            <v-img
-                title="Hogar"
-                height="100%"
-                src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/c5ad1085-f9f8-4d55-a443-83d30fc98aca___f2c3a65571546c3ea08249fc35bb9d8e.jpg"
-            />
-            </router-link>
-          </v-col>
-          <v-col
-              md="8"
-              sm="8"
-              cols="12"
-          >
-            <h1 class="text-center">{{ $t('hogar') }} ✨</h1>
-            <v-slide-group
-                v-model="modal"
-                center-active
-                show-arrows
-            >
-              <div
-                  style="display:flex !important; gap: 15px !important;">
-                <div v-if="responseproductsCat == null">
 
-                </div>
-                <v-slide-item
-                    v-else
-                    v-for="(productocat,i)  in responseproductsCat.getProductArray()"
-                    :key="i"
-                >
-                  <v-card
-                      class="mx-auto my-12 mx-5"
-                      width="285"
-                      :to="'/detalle_producto/' + productocat.getProductId()"
-
-                  >
-                    <div class="d-flex justify-space-between px-2 py-2">
-
-                      <v-btn
-                          icon
-                          color="grey"
-                          right
-                      >
-                        <v-icon>mdi-heart-outline</v-icon>
-                      </v-btn>
-                    </div>
-                    <v-img
-                        height="200"
-                        :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-                    ></v-img>
-
-                    <v-card-text>
-                      <v-spacer></v-spacer>
-                      <div>{{productocat.getProductNombre()}}</div>
-                    </v-card-text>
-                    <v-card-text>
-                      <v-chip-group
-                          active-class="deep-purple accent-4 white--text"
-                          column
-                      >
-                        <v-btn
-                            text
-                            color="error"
-                        >
-                          <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
-                        </v-btn>
-
-                      </v-chip-group>
-                      <v-card-actions class="d-flex justify-space-around">
-                        <v-btn
-                            outlined
-                            color="red"
-                            dark
-                        >
-                          {{$t('comprar')}}<br>{{$t('ahora')}}
-                        </v-btn>
-                        <v-btn
-                            color="red"
-                            dark
-                        >
-                          {{$t('agregar')}} <br>{{$t('a la bolsa')}}
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card-text>
-                  </v-card>
-                </v-slide-item>
-              </div>
-            </v-slide-group>
-
-          </v-col>
-        </v-row>
-
-      </v-container>
-    </v-container>
-    <!--Fin Categorias Hogar Slide groups para mostrar productos por categoria-->
-
-    <!--Categorias Salud y belleza Slide groups para mostrar productos por categoria-->
-
-    <v-container fluid style="background:#ffffff">
-      <v-container>
-        <v-row>
-          <v-col
-              cols="12"
-              sm="4"
-          >
-            <router-link to="/categoria_producto/2">
-            <v-img
-                title="Salud y belleza"
-                height="100%"
-                src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/aeacbcdc-fec9-4830-a677-e4abd6f3094c___236b8e90f53d9b874b0be625316f72b8.jpg"
-            />
-            </router-link>
-          </v-col>
-          <v-col
-              md="8"
-              sm="8"
-              cols="12"
-          >
-            <h1 class="text-center">{{ $t('salud') }}✨</h1>
-            <v-slide-group
-                v-model="modal"
-                center-active
-                show-arrows
-            >
-              <div
-                  style="display:flex !important; gap: 15px !important;">
-                <div v-if="responseproductsSal == null">
-                  <v-progress-circular
-                      indeterminate
-                      color="primary"
-                  ></v-progress-circular>
-                </div>
-                <v-slide-item
-                    v-else
-                    v-for="(productocat,i)  in responseproductsSal.getProductArray()"
-                    :key="i"
-                >
-                  <v-card
-                      class="mx-auto my-12 mx-5"
-                      width="285"
-                      :to="'/detalle_producto/' + productocat.getProductId()"
-                  >
-                    <div class="d-flex justify-space-between px-2 py-2">
-
-                      <v-btn
-                          icon
-                          color="grey"
-                          right
-                      >
-                        <v-icon>mdi-heart-outline</v-icon>
-                      </v-btn>
-                    </div>
-                    <v-img
-                        height="200"
-                        :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-                    ></v-img>
-
-                    <v-card-text>
-                      <v-spacer></v-spacer>
-                      <div>{{productocat.getProductNombre()}}</div>
-                    </v-card-text>
-                    <v-card-text>
-                      <v-chip-group
-                          active-class="deep-purple accent-4 white--text"
-                          column
-                      >
-                        <v-btn
-                            text
-                            color="error"
-                        >
-                          <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
-                        </v-btn>
-
-                      </v-chip-group>
-                      <v-card-actions class="d-flex justify-space-around">
-                        <v-btn
-                            outlined
-                            color="red"
-                            dark
-                        >
-                          {{$t('comprar')}}<br>{{$t('ahora')}}
-                        </v-btn>
-                        <v-btn
-                            color="red"
-                            dark
-                        >
-                          {{$t('agregar')}} <br>{{$t('a la bolsa')}}
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card-text>
-                  </v-card>
-                </v-slide-item>
-              </div>
-            </v-slide-group>
-
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-container>
-    <!--Fin Categorias Salud y belleza Slide groups para mostrar productos por categoria-->
-
-    <!--Catergoria Tecnologia Slide groups para mostrar productos -->
-
-    <v-container fluid style="background:rgba(245,241,241,0.93)">
-
-      <h1 class="text-center">{{ $t('tecno') }} 💻</h1>
-
-      <v-slide-group
-          v-model="modal"
-          center-active
-          show-arrows
-      >
-        <div
-            style="display:flex !important; gap: 15px !important;">
-          <div v-if="responseproductsTeg == null">
-
-          </div>
-          <v-slide-item
-              v-else
-              v-for="(productocat,i)  in responseproductsTeg.getProductArray()"
-              :key="i"
-          >
-            <v-card
-                class="mx-auto my-12 mx-5"
-                width="285"
-                :to="'/detalle_producto/' + productocat.getProductId()"
-            >
-              <div class="d-flex justify-space-between px-2 py-2">
-                <v-btn
-                    icon
-                    color="grey"
-                    left
-                    small
-                >
-                  <v-icon>mdi-heart-outline</v-icon>
-                </v-btn>
-              </div>
-              <v-img
-                  height="200"
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-              ></v-img>
-
-              <v-card-text>
-                <v-spacer></v-spacer>
-                <div>{{productocat.getProductNombre()}}</div>
-              </v-card-text>
-              <v-card-text>
-                <v-chip-group
-                    active-class="deep-purple accent-4 white--text"
-                    column
-                >
-                  <v-btn
-                      text
-                      color="error"
-                  >
-                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
-                  </v-btn>
-
-                </v-chip-group>
-                <v-card-actions class="d-flex justify-space-around">
-                  <v-btn
-                      outlined
-                      color="red"
-                      dark
-                  >
-                    {{$t('comprar')}}<br>{{$t('ahora')}}
-                  </v-btn>
-                  <v-btn
-                      color="red"
-                      dark
-                  >
-                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
-                  </v-btn>
-                </v-card-actions>
-              </v-card-text>
-            </v-card>
-          </v-slide-item>
-        </div>
-      </v-slide-group>
-    </v-container>
-    <!--Catergoria Tecnologia Slide groups para mostrar productos -->
-
-    <!--Catergoria Juguetes Slide groups para mostrar productos -->
-
-    <v-container fluid style="background:rgba(245,241,241,0.93)">
-      <h1 class="text-center">{{ $t('juguetes')}} ✨</h1>
-      <v-slide-group
-          v-model="modal"
-          center-active
-          show-arrows
-      >
-        <div
-            style="display:flex !important; gap: 15px !important;">
-
-          <div v-if="responseproductsJug == null">
-
-          </div>
-          <v-slide-item
-              v-else
-              v-for="(productocat,i)  in responseproductsJug.getProductArray()"
-              :key="i"
-          >
-            <v-card
-                class="mx-auto my-12 mx-5"
-                width="285"
-                :to="'/detalle_producto/' + productocat.getProductId()"
-            >
-              <div class="d-flex justify-space-between px-2 py-2">
-                <v-btn
-                    icon
-                    color="grey"
-                    left
-                    small
-                >
-                  <v-icon>mdi-heart-outline</v-icon>
-                </v-btn>
-              </div>
-              <v-img
-                  height="200"
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-              ></v-img>
-
-              <v-card-text>
-                <v-spacer></v-spacer>
-                <div>{{productocat.getProductNombre()}}</div>
-              </v-card-text>
-              <v-card-text>
-                <v-chip-group
-                    active-class="deep-purple accent-4 white--text"
-                    column
-                >
-                  <v-btn
-                      text
-                      color="error"
-                  >
-                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
-                  </v-btn>
-
-                </v-chip-group>
-                <v-card-actions class="d-flex justify-space-around">
-                  <v-btn
-                      outlined
-                      color="red"
-                      dark
-                  >
-                    {{$t('comprar')}}<br>{{$t('ahora')}}
-                  </v-btn>
-                  <v-btn
-                      color="red"
-                      dark
-                  >
-                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
-                  </v-btn>
-                </v-card-actions>
-              </v-card-text>
-            </v-card>
-          </v-slide-item>
-        </div>
-      </v-slide-group>
-
-    </v-container>
-    <!--Catergoria Juguetes Slide groups para mostrar productos -->
-    <!--TEST-->
-    <!--Catergoria Moda Slide groups para mostrar productos -->
-
-    <v-container fluid style="background:rgba(245,241,241,0.93)">
-      <h1 class="text-center">{{ $t('los_mejo')}}✨</h1>
-      <v-slide-group
-          v-model="modal"
-          center-active
-          show-arrows
-      >
-        <div
-            style="display:flex !important; gap: 15px !important;">
-
-          <div v-if="responseproductsMod == null">
-
-          </div>
-          <v-slide-item
-              v-else
-              v-for="(productocat,i)  in responseproductsMod.getProductArray()"
-              :key="i"
-          >
-            <v-card
-                class="mx-auto my-12 mx-5"
-                width="285"
-                :to="'/detalle_producto/' + productocat.getProductId()"
-
-            >
-              <div class="d-flex justify-space-between px-2 py-2">
-                <v-btn
-                    icon
-                    color="grey"
-                    left
-                    small
-                >
-                  <v-icon>mdi-heart-outline</v-icon>
-                </v-btn>
-              </div>
-              <v-img
-                  height="200"
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-              ></v-img>
-
-              <v-card-text>
-                <v-spacer></v-spacer>
-                <div>{{productocat.getProductNombre()}}</div>
-              </v-card-text>
-              <v-card-text>
-                <v-chip-group
-                    active-class="deep-purple accent-4 white--text"
-                    column
-                >
-                  <v-btn
-                      text
-                      color="error"
-                  >
-                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
-                  </v-btn>
-
-                </v-chip-group>
-                <v-card-actions class="d-flex justify-space-around">
-                  <v-btn
-                      outlined
-                      color="red"
-                      dark
-                  >
-                    {{$t('comprar')}}<br>{{$t('ahora')}}
-                  </v-btn>
-                  <v-btn
-                      color="red"
-                      dark
-                  >
-                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
-                  </v-btn>
-                </v-card-actions>
-              </v-card-text>
-            </v-card>
-          </v-slide-item>
-        </div>
-      </v-slide-group>
-
-    </v-container>
-    <!--Catergoria Moda Slide groups para mostrar productos -->
-
-    <!--Catergoria Cosmeticos Slide groups para mostrar productos -->
-
-    <v-container fluid style="background:rgba(245,241,241,0.93)">
-      <h1 class="text-center">{{ $t('cosmeticos')}}</h1>
-      <v-slide-group
-          v-model="modal"
-          center-active
-          show-arrows
-      >
-        <div
-            style="display:flex !important; gap: 15px !important;">
-          <div v-if="responseproductsCos == null">
-
-          </div>
-          <v-slide-item
-
-              v-else
-              v-for="(productocat,i)  in responseproductsCos.getProductArray()"
-              :key="i"
-          >
-            <v-card
-                class="mx-auto my-12 mx-5"
-                width="285"
-                :to="'/detalle_producto/' + productocat.getProductId()"
-            >
-              <div class="d-flex justify-space-between px-2 py-2">
-                <v-btn
-                    icon
-                    color="grey"
-                    left
-                    small
-                >
-                  <v-icon>mdi-heart-outline</v-icon>
-                </v-btn>
-              </div>
-              <v-img
-                  height="200"
-                  :src="'data:image/jpeg;charset=utf-8;base64,' +productocat.getProductImage()"
-              ></v-img>
-
-              <v-card-text>
-                <v-spacer></v-spacer>
-                <div>{{productocat.getProductNombre()}}</div>
-              </v-card-text>
-              <v-card-text>
-                <v-chip-group
-                    active-class="deep-purple accent-4 white--text"
-                    column
-                >
-                  <v-btn
-                      text
-                      color="error"
-                  >
-                    <v-card-subtitle class="text-md-h6 text-sm-subtitle-1 font-weight-bold">S/{{productocat.getProductPrecio()}}</v-card-subtitle>
-                  </v-btn>
-
-                </v-chip-group>
-                <v-card-actions class="d-flex justify-space-around">
-                  <v-btn
-                      outlined
-                      color="red"
-                      dark
-                  >
-                    {{$t('comprar')}}<br>{{$t('ahora')}}
-                  </v-btn>
-                  <v-btn
-                      color="red"
-                      dark
-                  >
-                    {{$t('agregar')}} <br>{{$t('a la bolsa')}}
-                  </v-btn>
-                </v-card-actions>
-              </v-card-text>
-            </v-card>
-          </v-slide-item>
-        </div>
-      </v-slide-group>
-
-    </v-container>
-    <!--Catergoria Cosmeticos Slide groups para mostrar productos -->
-
-    <!--Rutas para clientes -->
+    <!--Client routes -->
 
     <v-container fluid style="background:#ffffff">
       <v-container>
@@ -667,7 +262,6 @@
       </v-container>
 
     </v-container>
-    <!--Rutas para clientes -->
   </div>
 
 </template>
@@ -679,6 +273,7 @@ import AppSlider from "../components/AppSlider.vue";
 import {defineComponent, onMounted, Ref, ref} from "@vue/composition-api";
 import {productsServices} from '@/Services/Productos/ProductsService'
 import ProductModel from "@/models/Productos/ProductModel";
+import CategoryAllModel from "@/models/CategoryModel/CategoryAllModel";
 
 export default defineComponent({
   name: 'home',
@@ -706,12 +301,8 @@ export default defineComponent({
 
     const products : Ref<ProductModel|null> = ref(null);
 
-    const responseproductsCat : Ref<ProductModel|null> = ref(null);
-    const responseproductsSal : Ref<ProductModel|null> = ref(null);
-    const responseproductsTeg : Ref<ProductModel|null> = ref(null);
-    const responseproductsJug : Ref<ProductModel|null> = ref(null);
-    const responseproductsMod : Ref<ProductModel|null> = ref(null);
-    const responseproductsCos : Ref<ProductModel|null> = ref(null);
+    const category : Ref<CategoryAllModel|null> = ref(null)
+
 
 
     const  getProducts = async () => {
@@ -719,30 +310,15 @@ export default defineComponent({
       const response = await productsServices.getProducts()
       //Instanciar la clase
       products.value = new ProductModel(response)
-      console.log(products.value);
-
-
-
     }
+
     const getProductsByCategory = async () =>{
 
-      const response = await productsServices.getProductsByCategory(1);
-      responseproductsCat.value = new ProductModel(response['productos'])
+      const categoryList = await productsServices.getAllProductsByCategory();
+      console.log(new CategoryAllModel(categoryList))
 
-      const response1 = await productsServices.getProductsByCategory(2);
-      responseproductsSal.value = new ProductModel(response1['productos'])
+      category.value = new CategoryAllModel(categoryList)
 
-      const response2 = await productsServices.getProductsByCategory(8);
-      responseproductsTeg.value = new ProductModel(response2['productos'])
-
-      const response3 = await productsServices.getProductsByCategory(4);
-      responseproductsJug.value = new ProductModel(response3['productos'])
-
-      const response4 = await productsServices.getProductsByCategory(3);
-      responseproductsMod.value = new ProductModel(response4['productos'])
-
-      const response5 = await productsServices.getProductsByCategory(6);
-      responseproductsCos.value = new ProductModel(response5['productos'])
 
     }
 
@@ -758,12 +334,7 @@ export default defineComponent({
       products,
       getProducts,
       getProductsByCategory,
-      responseproductsCat,
-      responseproductsSal,
-      responseproductsTeg,
-      responseproductsJug,
-      responseproductsMod,
-      responseproductsCos
+      category
 
     }
 
