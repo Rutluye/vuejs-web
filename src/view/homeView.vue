@@ -303,8 +303,6 @@ export default defineComponent({
 
     const category : Ref<CategoryAllModel|null> = ref(null)
 
-
-
     const  getProducts = async () => {
 
       const response = await productsServices.getProducts()
@@ -315,7 +313,6 @@ export default defineComponent({
     const getProductsByCategory = async () =>{
 
       const categoryList = await productsServices.getAllProductsByCategory();
-      console.log(new CategoryAllModel(categoryList))
 
       category.value = new CategoryAllModel(categoryList)
 

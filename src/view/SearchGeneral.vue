@@ -1,18 +1,5 @@
 <template>
-    <div v-if="!responseCategory">
-
-    <v-progress-circular
-        style="height:400px; display:flex; align-content: center; justify-content: center"
-        indeterminate
-        color="red"
-    ></v-progress-circular>
-    </div>
-    <div v-else>
-      <v-row class="pa-3">
-        <v-img
-            :src="'data:image/jpeg;charset=utf-8;base64,' + responseCategory.getCategoryImage()"
-        ></v-img>
-      </v-row>
+    <div>
       <v-row>
         <v-col
             cols="2"
@@ -77,19 +64,17 @@
             md="10"
             cols="12"
         >
-          <ProductCard :response-category="responseCategory"/>
+          <div v-if="!responseSearch">
+            <v-progress-circular
+                style="height:400px; display:flex; align-content: center; justify-content: center"
+                indeterminate
+                color="red"
+            ></v-progress-circular>
+          </div>
+          <ProductCard
+              v-else
+              :response-category="responseSearch"/>
         </v-col>
-        <v-row class="pa-5">
-          <v-col
-              cols="12"
-              class="hidden-sm-and-down">
-            <v-divider></v-divider>
-            <v-card-title>{{ responseCategory.getCategoryNombre() }}</v-card-title>
-            <v-card-text>
-              {{responseCategory.getCategoryDescripcion()}}
-            </v-card-text>
-          </v-col>
-        </v-row>
       </v-row>
     </div>
 </template>
@@ -97,9 +82,9 @@
 <script lang="ts">
 import {defineComponent} from "@vue/composition-api";
 import {onMounted, ref, Ref} from "@vue/composition-api/dist/vue-composition-api";
-import CategoryModel from "@/models/CategoryModel/CategoryModel";
 import {productsServices} from "@/Services/Productos/ProductsService";
 import ProductCard from "@/components/cards/ProductCard.vue";
+import ProductModel from "@/models/Productos/ProductModel";
 
 export default defineComponent({
   name: 'ProductosGeneral',
@@ -108,7 +93,6 @@ export default defineComponent({
   },
   setup(_, context) {
     const modal = null
-
 
     const items= ref([
       {
@@ -172,18 +156,19 @@ export default defineComponent({
     const route = context.root.$route;
 
 
-    const responseCategory : Ref<CategoryModel|null> = ref(null);
+    const responseSearch : Ref<ProductModel|null> = ref(null);
 
-    const getProductsByCategory = async () =>{
+    const getProductsBySearch = async () =>{
 
-      const response = await productsServices.getProductsByCategory(route.params.categoria);
+      const response = await productsServices.searchProducts(route.params.nom_pro);
 
-      responseCategory.value = new CategoryModel(response)
+      console.log(response);
+      responseSearch.value = new ProductModel(response)
 
     }
 
     onMounted( () => {
-      getProductsByCategory();
+      getProductsBySearch();
     })
 
 
@@ -191,8 +176,8 @@ export default defineComponent({
       items,
       itemData,
       modal,
-      getProductsByCategory,
-      responseCategory
+      getProductsBySearch,
+      responseSearch
     }
 
     //...

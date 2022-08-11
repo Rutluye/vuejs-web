@@ -26,12 +26,18 @@ const routes: RouteConfig[] = [
             default: () => import("@/view/ProductosCard.vue")
         }
     },
-
     {
         path: '/categoria_producto/:categoria',
         name: WebPages.PRODUCTGENE,
         components: {
             default: () => import("@/view/ProductosGeneral.vue")
+        }
+    },
+    {
+        path: '/search/:nom_pro',
+        name: WebPages.PRODUCTSEARCH,
+        components: {
+            default: () => import("@/view/SearchGeneral.vue")
         }
     }
 

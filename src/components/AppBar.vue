@@ -21,14 +21,14 @@
             src="https://minisope.vtexassets.com/assets/vtex.file-manager-graphql/images/10f39e67-475c-4ca1-b70d-514d1ff6f2ae___ef69a328b8f540713705bb41b96cb81a.png"
         />
       </router-link>
-      <v-autocomplete
+      <v-text-field
           solo
           v-model="inputModel"
           :items="searchProduct"
-          :search-input.sync="selectAuto"
           cache-items
           hide-no-data
           hide-details
+          @keyup.enter="buscarProductos"
       >
         <v-text-field
             solo
@@ -36,7 +36,7 @@
             label="¿Qué estás buscando hoy?"
 
         />
-      </v-autocomplete>
+      </v-text-field>
 
       <v-spacer></v-spacer>
 
@@ -54,15 +54,12 @@
           <v-img :src="item.icon" style="max-width:22px;max-height:15px"/>
         </template>
         <template v-slot="{item}">
-          {{item.label}}
+          {{ item.label }}
         </template>
       </v-select>
-      <v-btn
-          icon
-          color="black"
-      >
-        <v-icon>mdi-penguin</v-icon>
-      </v-btn>
+
+      <UserForm/>
+
       <v-btn
           icon
           color="black"
@@ -125,26 +122,26 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, Ref, watch} from "@vue/composition-api";
+import {defineComponent, ref, Ref, watch, SetupContext, reactive} from "@vue/composition-api";
 import CategoryModel from "@/models/CategoryModel/CategoryModel";
 import {productsServices} from "@/Services/Productos/ProductsService";
 import ProductModel from "@/models/Productos/ProductModel";
 import i18n from "@/plugins/i18n";
-
+import {WebPages} from "@/constants";
+import UserForm from "@/components/cards/UserForm.vue";
 
 export default defineComponent({
   name: "AppBar.vue",
-  loading: false,
-  select: null,
-  items: [],
-  search: null,
+  components:{
+    UserForm
+  },
+  setup: function (_, context: SetupContext) {
+
+    //Utilizamos ref cuando son variables primitivas como : booleano, number, string
+    //Utilizamos reactive cuando son variables complejas : Arreglos y Objetos
 
 
-  setup(_,context) {
-
-    const list: boolean = false;
-
-    const categorias = [
+    const categorias = reactive([
       {
         'color': 'red',
         'cat': 'New Arrivals ✨'
@@ -169,30 +166,29 @@ export default defineComponent({
         'color': 'black',
         'cat': 'Contáctenos'
       }
-    ]
+    ])
 
-    const btns =    ['Removed', '0']
 
-    const colors = ['deep-purple accent-4']
-
-    const items = ['Hogar', 'Salud y Belleza', 'Juguetería', 'Tecnología']
+    const items: string[] = reactive(['Hogar', 'Salud y Belleza', 'Juguetería', 'Tecnología'])
 
     const route = context.root.$route;
 
-    const responseproductsCat : Ref<ProductModel|null> = ref(null);
+    const responseproductsCat: Ref<ProductModel | null> = ref(null);
 
-    const responseCategory : Ref<CategoryModel|null> = ref(null);
+    const responseCategory: Ref<CategoryModel | null> = ref(null);
 
-    const searchProduct : Ref<ProductModel|any> = ref([]);
-    const selectAuto : Ref<any> = ref('')
-    const inputModel : Ref<any> =ref(null)
+    const searchProduct: Ref<ProductModel | any> = ref([]);
 
-    watch(selectAuto, async() =>{
+    const selectAuto: Ref<string> = ref('')
+    const inputModel: Ref<string> = ref('')
+
+    watch(selectAuto, async () => {
       const response = await productsServices.searchProducts(selectAuto.value)
 
-      searchProduct.value = response.map( (producto : any) =>{ return producto.producto_nombre})
+      searchProduct.value = response.map((producto: any) => {
+        return producto.producto_nombre
+      })
     })
-
 
     const getProductsByCategory = async () => {
 
@@ -201,45 +197,68 @@ export default defineComponent({
       responseCategory.value = new CategoryModel(response[0])
     }
 
+    const buscarProductos = async () => {
+
+      console.log(inputModel.value);
+      if (inputModel.value.trim().length <= 0) return;
+
+      context.root.$router.push({
+        name: WebPages.PRODUCTSEARCH,
+        params: {
+          nom_pro: inputModel.value
+        }
+      }).catch(e => console.log("Error-Navbar: ", e));
+
+    }
+
     const e1 = 'es';
 
-    function selectLanguage(id:string) {
+    function selectLanguage(id: string) {
       i18n.locale = id;
 
     }
+
     const idiomas = [
-      {id : 'es', label : 'Español', icon : 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/2880px-Bandera_de_Espa%C3%B1a.svg.png'},
-      {id : 'en', label : 'Ingles', icon  : 'https://assets.puzzlefactory.pl/puzzle/423/164/original.webp'},
-      {id : 'fr', label : 'Frances', icon : 'https://static.magflags.net/media/catalog/product/cache/b756e98438727cbd4415a0b646d85461/F/R/FR-1x1.5.png'}
+      {
+        id: 'es',
+        label: 'Español',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/2880px-Bandera_de_Espa%C3%B1a.svg.png'
+      },
+      {id: 'en', label: 'Ingles', icon: 'https://assets.puzzlefactory.pl/puzzle/423/164/original.webp'},
+      {
+        id: 'fr',
+        label: 'Frances',
+        icon: 'https://static.magflags.net/media/catalog/product/cache/b756e98438727cbd4415a0b646d85461/F/R/FR-1x1.5.png'
+      }
 
     ]
 
 
-      return {
-        e1,
-        list,
-        idiomas,
-        getProductsByCategory,
-        responseproductsCat,
-        responseCategory,
-        searchProduct,
-        selectAuto,
-        inputModel,
-        categorias, colors, btns,items,
-        model: 'tab-2',
-        text: 'Hogar',
-        selectLanguage
-      }
+    return {
+      e1,
+      idiomas,
+      responseproductsCat,
+      responseCategory,
+      searchProduct,
+      selectAuto,
+      inputModel,
+      categorias, items,
+      text: 'Hogar',
+      getProductsByCategory,
+      buscarProductos,
+      selectLanguage
     }
+  }
 })
 </script>
 <style scoped>
-.button_offer{
-  padding:0 !important;
-  margin:0 !important;
+.button_offer {
+  padding: 0 !important;
+  margin: 0 !important;
 }
-.v-slide-group__content{
-  display:flex !important;
+
+.v-slide-group__content {
+  display: flex !important;
   gap: 15px !important;
 }
 
