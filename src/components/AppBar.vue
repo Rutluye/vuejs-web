@@ -82,7 +82,7 @@
           <v-list-item>
 
             <v-list-item-content>
-              <v-list-item-title>John Leider</v-list-item-title>
+              <v-list-item-title>Rut Ludeña</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
