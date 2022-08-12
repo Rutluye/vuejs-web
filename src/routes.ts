@@ -39,6 +39,14 @@ const routes: RouteConfig[] = [
         components: {
             default: () => import("@/view/SearchGeneral.vue")
         }
+    },
+
+    {
+        path: '/new/',
+        name: WebPages.NEWPRODUCTOS,
+        components: {
+            default: () => import("@/view/NewProductos.vue")
+        }
     }
 
 

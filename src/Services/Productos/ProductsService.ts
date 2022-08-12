@@ -26,6 +26,12 @@ export class ProductsServices{
         return data;
     }
 
+
+    public async getProductsByNew(){
+       const { data } = await axios.get(`${API_PREFIX_MAIN}/nuevos_productos/`)
+       return data;
+    }
 }
+
 
 export const productsServices = new ProductsServices()

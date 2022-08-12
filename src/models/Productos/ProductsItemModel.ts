@@ -10,9 +10,11 @@ export default class ProductsItemModel {
     private producto_descuento: number;
     private precio_final: number;
     private producto_categoria: number;
+    private date_created : string
 
 
     constructor(data: IProductos) {
+        this.date_created = data.date_created
         this.producto_descripcion = data.producto_descripcion
         this.int = data.int
         this.producto_img = data.producto_img
@@ -57,4 +59,7 @@ export default class ProductsItemModel {
         return this.producto_categoria
     }
 
+    public getDateCreated() : string{
+        return this.date_created
+    }
 }

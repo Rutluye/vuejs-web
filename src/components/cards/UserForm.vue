@@ -154,11 +154,7 @@ import {userService} from "@/Services/UserService/UserService";
 export default defineComponent({
 
   name: "UserForm.vue",
-  props:{
-    registerUser:{
-      type: Object
-    }
-  },
+
 
   setup: function (_, context: SetupContext) {
 
@@ -203,6 +199,7 @@ export default defineComponent({
       dialog,
       validForm,
       alert,
+      registerUser,
       user
     }
   }

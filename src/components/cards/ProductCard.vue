@@ -13,6 +13,11 @@
             :to="'/detalle_producto/' + producto.getProductId()"
         >
           <div class="d-flex justify-space-between px-2 py-2">
+            <v-btn
+                v-if="producto.getDateCreated()"
+                small
+                color="#f7c1bb"
+            >Nuevo</v-btn>
             <v-spacer></v-spacer>
             <v-btn
                 icon
@@ -62,13 +67,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "@vue/composition-api";
+import {defineComponent, PropType} from "@vue/composition-api";
+import ProductModel from "@/models/Productos/ProductModel";
 
 export default defineComponent({
   name: "ProductCard.vue",
   props:{
-    responseCategory:{
-      type: Object
+    responseCategory: {
+      type: Object as PropType<ProductModel>,
+
+
     }
   },
   setup() {

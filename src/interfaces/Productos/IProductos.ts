@@ -7,6 +7,7 @@ export default interface IProductos{
     producto_descuento   : number;
     precio_final         : number;
     producto_categoria   : number;
+    date_created         : string;
 
 
 }

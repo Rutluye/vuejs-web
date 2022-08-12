@@ -95,10 +95,17 @@
                 color="black"
                 style="text-transform:capitalize !important; color: black">
 
-              <router-link to="/categoria_producto/1">Categorías</router-link>
+              <router-link
+                  to="/categoria_producto/1"
+                  class="text-decoration-none"
+              >Categorías</router-link>
 
             </v-tab>
-
+            <v-tab>
+              <router-link to="/new"
+                           class="text-decoration-none red--text text-decoration-none text-capitalize"
+              >New Arrivals ✨</router-link>
+            </v-tab>
             <v-tab
                 v-for="(categoria,i) in categorias"
                 :key="i"
@@ -117,7 +124,6 @@
       </v-menu>
     </v-card>
   </div>
-
 
 </template>
 
@@ -142,10 +148,6 @@ export default defineComponent({
 
 
     const categorias = reactive([
-      {
-        'color': 'red',
-        'cat': 'New Arrivals ✨'
-      },
       {
         'color': 'black',
         'cat': 'Miniso Wow ✨'
@@ -261,5 +263,6 @@ export default defineComponent({
   display: flex !important;
   gap: 15px !important;
 }
+
 
 </style>
