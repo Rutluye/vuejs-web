@@ -66,12 +66,45 @@
       >
         <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
-      <v-btn
-          icon
-          color="black"
-      >
-        <v-icon>mdi-shopping-outline</v-icon>
-      </v-btn>
+            <v-btn
+                icon
+                color="black"
+                @click.stop="drawer = !drawer"
+            >
+              <v-icon>mdi-shopping-outline</v-icon>
+            </v-btn>
+        <v-navigation-drawer
+            v-model="drawer"
+            absolute
+            temporary
+            right
+        >
+          <v-list-item>
+
+            <v-list-item-content>
+              <v-list-item-title>John Leider</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider></v-divider>
+
+          <v-list dense>
+            <v-list-item
+                v-for="item in itemNavigation"
+                :key="item.title"
+                link
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+
     </div>
 
     <!--v-card cabecera-->
@@ -141,11 +174,17 @@ export default defineComponent({
   components:{
     UserForm
   },
+
   setup: function (_, context: SetupContext) {
 
     //Utilizamos ref cuando son variables primitivas como : booleano, number, string
     //Utilizamos reactive cuando son variables complejas : Arreglos y Objetos
+    const drawer = ref (null)
 
+    const itemNavigation = reactive([
+          { title: 'Home', icon: 'mdi-view-dashboard' },
+          { title: 'About', icon: 'mdi-forum' },
+        ])
 
     const categorias = reactive([
       {
@@ -248,7 +287,9 @@ export default defineComponent({
       text: 'Hogar',
       getProductsByCategory,
       buscarProductos,
-      selectLanguage
+      selectLanguage,
+      drawer,
+      itemNavigation
     }
   }
 })

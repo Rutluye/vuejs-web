@@ -6,6 +6,7 @@ export class DetailsProducts{
     public async getProducts(id_producto : string) {
 
         const { data } = await axios.get(`${API_PREFIX_MAIN}/detalle_producto/${id_producto}`)
+        console.log(data);
         return data;
     }
 
